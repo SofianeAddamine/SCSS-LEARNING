@@ -1,0 +1,208 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto';
+}
+
+// palette de couleur 
+$couleur-terre: #97743a;
+$bleu-vert: #173e43;
+$semi-blanc: #f1f1f1;
+
+// Mixins
+
+@mixin flexCenter {
+    display: flex;
+    justify-content: center;
+}
+
+@mixin flexHeaderBoxs{
+    width: 560px;
+    height: 500px;
+    border: 1px solid $semi-blanc;
+}
+@mixin flexHeadings{
+    font-size: 80px;
+    color: $semi-blanc;
+    text-align: center;
+    font-family: 'Kaushan Script'
+}
+
+
+
+header {
+    background: url("../img/img1.jpg") center;
+    background-size: cover; 
+    height: 100vh;
+}
+.containerHeader {
+    display: flex;
+    max-width: 1140px;
+    margin: auto;
+    padding-top: 250px;
+}
+
+// les 2 boxs
+
+// premiere box 
+.flexHeader1{
+    @include flexHeaderBoxs;
+    margin-right: 15px;
+
+    h1 {
+        @include flexHeadings;
+        margin-top: 100px;
+    }
+    .btn{
+        @include flexCenter;
+        width: 100%;
+        
+        %btnHome{
+            width: 250px;
+            margin: 10px;
+            height: 50px;
+            border: 1px solid $semi-blanc;
+            border-radius: 5px;
+            cursor: pointer;
+            color: $semi-blanc;
+            font-size: 18px;
+            font-family: 'Lato';
+        }
+
+        .btn1{
+            @extend %btnHome;
+            background-color: $couleur-terre;
+        }
+        .btn2{
+            @extend %btnHome;
+            background-color: $bleu-vert;
+        }
+    }
+}
+
+// seconde Box 
+
+.flexHeader2{
+    @include flexHeaderBoxs;
+
+    h2{
+        @include flexHeadings;
+        margin: 40px 0 0 0; // droite , haut , bas , gauche
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        margin: 30px;
+        color: $semi-blanc;
+
+        input{
+            height: (3 * 10) * 1px;
+            margin: 10px;
+            border: none;
+            border-radius: 2px;
+        }
+        
+        .inputLog {
+            @include flexCenter;
+
+            input{
+                width: 35%;
+                margin: 10px;
+                border: 1px solid $semi-blanc;
+                border-radius: 5px;
+                background-color: $couleur-terre;
+                color: $semi-blanc;
+                font-size: 15px;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+// contenu
+
+
+#section1 h2 {
+    text-align: center;
+    font-size: 50px;
+}
+#section1 hr{
+    width: 250px;
+    text-align: center;
+}
+.flexTxt{
+    @include flexCenter;
+
+    %FlexTxtSet{
+        padding: 70px;
+        line-height: 25px;
+        width: 40%;
+    }
+    .flexTxt1 {
+        @extend %FlexTxtSet;
+    }
+    .flexTxt2 {
+        @extend %FlexTxtSet;
+    }
+}
+
+// liste
+
+.liste {
+    width: 500px;
+    margin: 10px;
+    ol{
+        color: #ccc;
+        list-style-type: none;
+        li{
+            position: relative;
+            font:bold italic 45px sans-serif;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            span {
+                position: absolute;
+            }
+            p {
+                font: 15px sans-serif;
+                line-height: 1.5;
+                padding-left: 60px;
+                color: #555;
+            }
+        }
+    }
+}
+
+// Footer
+
+.flexFoot {
+    height: 200px;
+    background: $bleu-vert;
+    color: $semi-blanc;
+    @include flexCenter;
+    align-items: center;
+}
+
+// media queris (vite fait mdr)
+
+@media screen and(max-width:1200px){
+
+    header {
+        height: 110vh;
+    }
+    .containerHeader{
+        margin: 0 auto;
+        padding-top: 10px;
+        flex-direction: column;
+        align-items: center;
+    }
+    .flexHeader1 {
+        margin-right: 0px;
+    }
+    .flexTxt {
+        flex-direction: column;
+        align-items: center;
+    }
+    .flexTxt1, .flexTxt2 {
+        width: 80%;
+    }
+}
